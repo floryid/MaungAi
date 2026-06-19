@@ -20,6 +20,10 @@ class MaungAiApp:
     PANEL = "\033[38;2;30;41;59m"
     SUCCESS = "\033[38;2;80;220;170m"
     WARNING = "\033[38;2;255;170;90m"
+    RED = "\033[38;2;255;85;85m"
+    RED_SOFT = "\033[38;2;210;60;60m"
+    GREEN = "\033[38;2;80;255;140m"
+    GREEN_SOFT = "\033[38;2;60;200;110m"
 
     def __init__(self, config: PipelineConfig):
         self.config = config
@@ -167,51 +171,66 @@ class MaungAiApp:
         status_color = self.SUCCESS if self.config.is_ready else self.WARNING
         if self._supports_unicode():
             lines = [
-                f"{self.BLUE}╔════════════════════════════════════════════════════════════════════╗{self.RESET}",
                 (
-                    f"{self.BLUE}║{self.RESET} "
-                    f"{self.GOLD}{self.BOLD}MAUNGAI{self.RESET}"
-                    f"{self.SILVER}  |  Pipeline Recon Linux Terminal{self.RESET}"
-                    f"{' ' * 20}{self.BLUE}║{self.RESET}"
+                    f"{self.RED}{self.BOLD}"
+                    " ███╗   ███╗ █████╗ ██╗   ██╗███╗   ██╗ ██████╗      █████╗ ██╗ "
+                    f"{self.RESET}"
                 ),
                 (
-                    f"{self.BLUE}║{self.RESET} "
-                    f"{self.CYAN}Modern Bug Hunter Workflow  {self.RESET}"
-                    f"{self.MUTED}Recon -> Validate -> Discover -> Scan{self.RESET}"
-                    f"{' ' * 3}{self.BLUE}║{self.RESET}"
+                    f"{self.RED_SOFT}{self.BOLD}"
+                    " ████╗ ████║██╔══██╗██║   ██║████╗  ██║██╔════╝     ██╔══██╗██║ "
+                    f"{self.RESET}"
                 ),
                 (
-                    f"{self.BLUE}║{self.RESET} "
-                    f"{self.SILVER}Profile:{self.RESET} {self.GOLD}{self.config.profile.upper():<8}{self.RESET} "
-                    f"{self.SILVER}Mode:{self.RESET} {status_color}{status:<10}{self.RESET} "
-                    f"{self.SILVER}Timeout:{self.RESET} {self.CYAN}{self.config.timeout_seconds:>3}s{self.RESET}"
-                    f"{' ' * 9}{self.BLUE}║{self.RESET}"
+                    f"{self.RED}{self.BOLD}"
+                    " ██╔████╔██║███████║██║   ██║██╔██╗ ██║██║  ███╗    ███████║██║ "
+                    f"{self.RESET}"
                 ),
-                f"{self.BLUE}╚════════════════════════════════════════════════════════════════════╝{self.RESET}",
+                (
+                    f"{self.GREEN_SOFT}{self.BOLD}"
+                    " ██║╚██╔╝██║██╔══██║██║   ██║██║╚██╗██║██║   ██║    ██╔══██║██║ "
+                    f"{self.RESET}"
+                ),
+                (
+                    f"{self.GREEN}{self.BOLD}"
+                    " ██║ ╚═╝ ██║██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝    ██║  ██║██║ "
+                    f"{self.RESET}"
+                ),
+                (
+                    f"{self.GREEN_SOFT}{self.BOLD}"
+                    " ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝     ╚═╝  ╚═╝╚═╝ "
+                    f"{self.RESET}"
+                ),
+                "",
+                (
+                    f"{self.SILVER}{self.BOLD}"
+                    "         Recon"
+                    f"{self.GREEN} • {self.SILVER}"
+                    "Discovery"
+                    f"{self.GREEN} • {self.SILVER}"
+                    "Automation"
+                    f"{self.RED} • {self.SILVER}"
+                    f"Research{self.RESET}"
+                ),
+                (
+                    f"{self.MUTED}         Profile: {self.GOLD}{self.config.profile.upper()}{self.RESET}"
+                    f"{self.MUTED}   Mode: {status_color}{status}{self.RESET}"
+                    f"{self.MUTED}   Timeout: {self.CYAN}{self.config.timeout_seconds}s{self.RESET}"
+                ),
             ]
         else:
             lines = [
-                f"{self.BLUE}+------------------------------------------------------------------+{self.RESET}",
                 (
-                    f"{self.BLUE}|{self.RESET} "
-                    f"{self.GOLD}{self.BOLD}MAUNGAI{self.RESET}"
-                    f"{self.SILVER}  |  Pipeline Recon Linux Terminal{self.RESET}"
-                    f"{' ' * 20}{self.BLUE}|{self.RESET}"
+                    f"{self.RED}{self.BOLD}"
+                    "MAUNGAI"
+                    f"{self.RESET} "
+                    f"{self.SILVER}- Recon - Discovery - Automation - Research{self.RESET}"
                 ),
                 (
-                    f"{self.BLUE}|{self.RESET} "
-                    f"{self.CYAN}Modern Bug Hunter Workflow  {self.RESET}"
-                    f"{self.MUTED}Recon -> Validate -> Discover -> Scan{self.RESET}"
-                    f"{' ' * 3}{self.BLUE}|{self.RESET}"
+                    f"{self.GREEN}Profile:{self.RESET} {self.GOLD}{self.config.profile.upper()}{self.RESET}  "
+                    f"{self.GREEN}Mode:{self.RESET} {status_color}{status}{self.RESET}  "
+                    f"{self.GREEN}Timeout:{self.RESET} {self.CYAN}{self.config.timeout_seconds}s{self.RESET}"
                 ),
-                (
-                    f"{self.BLUE}|{self.RESET} "
-                    f"{self.SILVER}Profile:{self.RESET} {self.GOLD}{self.config.profile.upper():<8}{self.RESET} "
-                    f"{self.SILVER}Mode:{self.RESET} {status_color}{status:<10}{self.RESET} "
-                    f"{self.SILVER}Timeout:{self.RESET} {self.CYAN}{self.config.timeout_seconds:>3}s{self.RESET}"
-                    f"{' ' * 9}{self.BLUE}|{self.RESET}"
-                ),
-                f"{self.BLUE}+------------------------------------------------------------------+{self.RESET}",
             ]
         for line in lines:
             print(line)
