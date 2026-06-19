@@ -1,5 +1,12 @@
 # MaungAi
 
+[![Repository](https://img.shields.io/badge/GitHub-floryid%2FMaungAi-0f172a?style=for-the-badge&logo=github)](https://github.com/floryid/MaungAi)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Platform](https://img.shields.io/badge/Platform-Linux-1f2937?style=for-the-badge&logo=linux&logoColor=white)](https://kernel.org/)
+[![Authorized Testing](https://img.shields.io/badge/Usage-Authorized%20Testing-15803d?style=for-the-badge)](https://github.com/floryid/MaungAi)
+
+![MaungAi Banner](docs/images/maungai-banner.svg)
+
 MaungAi adalah aplikasi terminal berbasis Python untuk workflow reconnaissance dan vulnerability assessment yang bertahap, cepat, terstruktur, dan fokus pada target yang memang relevan. Tool ini dirancang untuk authorized testing seperti bug bounty, VDP, penetration test resmi, dan audit keamanan yang memiliki izin tertulis.
 
 Repository GitHub:
@@ -26,6 +33,14 @@ Catatan:
 
 - Di terminal Linux UTF-8, banner tampil penuh dengan warna ANSI merah-hijau.
 - Di terminal yang tidak mendukung Unicode dengan baik, `MaungAi` otomatis memakai fallback ASCII agar tetap terbaca.
+
+## Preview Interface
+
+Ilustrasi tampilan terminal `MaungAi` di halaman GitHub:
+
+![MaungAi Terminal Preview](docs/images/terminal-preview.svg)
+
+Bagian ini memberi gambaran struktur dashboard sebelum user menjalankan pipeline di terminal Linux.
 
 ## Ringkasan
 
@@ -397,6 +412,36 @@ Lalu di menu:
 3. Pilih `8` untuk menjalankan full pipeline
 4. Pilih `7` untuk generate report
 5. Buka hasil di folder `project/<target>/reports/`
+
+## Demo Workflow
+
+Contoh alur penggunaan paling umum dari awal sampai report:
+
+```bash
+git clone https://github.com/floryid/MaungAi.git
+cd MaungAi
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -e .
+chmod +x scripts/install_linux_tools.sh
+./scripts/install_linux_tools.sh
+
+python3 main.py \
+  --target example.com \
+  --scope "*.example.com" \
+  --profile balanced \
+  --full-pipeline
+
+cat project/example.com/reports/summary.md
+```
+
+Alur di atas akan:
+
+- menyiapkan environment Python
+- menginstall tool recon Linux
+- menjalankan full pipeline
+- menghasilkan report akhir yang siap direview
 
 ## Opsi CLI
 

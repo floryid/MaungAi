@@ -1,0 +1,69 @@
+<svg width="1280" height="320" viewBox="0 0 1280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="80" y1="48" x2="1190" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF4D4D"/>
+      <stop offset="1" stop-color="#4DFF88"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1280" height="320" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="320" rx="24" fill="url(#bg)"/>
+  <rect x="28" y="28" width="1224" height="264" rx="20" stroke="#253044" stroke-width="2"/>
+  <circle cx="68" cy="58" r="8" fill="#FF5F57"/>
+  <circle cx="96" cy="58" r="8" fill="#FFBD2E"/>
+  <circle cx="124" cy="58" r="8" fill="#28C840"/>
+
+  <g filter="url(#shadow)">
+    <text x="74" y="128" fill="url(#accent)" font-family="'Cascadia Code', 'Fira Code', monospace" font-size="40" font-weight="700">
+      MAUNGAI
+    </text>
+    <text x="74" y="165" fill="#D7E1F2" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="600">
+      Recon Pipeline Framework For Authorized Testing
+    </text>
+    <text x="74" y="206" fill="#93A4BD" font-family="'Segoe UI', Arial, sans-serif" font-size="18">
+      Recon -> Discovery -> Automation -> Research
+    </text>
+  </g>
+
+  <rect x="74" y="226" width="142" height="36" rx="10" fill="#1D2635"/>
+  <text x="96" y="249" fill="#4DFF88" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700">
+    FAST | CLEAN
+  </text>
+
+  <rect x="234" y="226" width="172" height="36" rx="10" fill="#1D2635"/>
+  <text x="256" y="249" fill="#FF6B6B" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700">
+    LINUX TERMINAL
+  </text>
+
+  <rect x="426" y="226" width="198" height="36" rx="10" fill="#1D2635"/>
+  <text x="448" y="249" fill="#9FD0FF" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700">
+    BUG HUNTER WORKFLOW
+  </text>
+
+  <path d="M875 94H1148" stroke="#253044" stroke-width="2"/>
+  <path d="M875 130H1148" stroke="#253044" stroke-width="2"/>
+  <path d="M875 166H1148" stroke="#253044" stroke-width="2"/>
+  <path d="M875 202H1148" stroke="#253044" stroke-width="2"/>
+
+  <text x="882" y="86" fill="#6EE7B7" font-family="'Cascadia Code', monospace" font-size="16">
+    [1] Asset Discovery
+  </text>
+  <text x="882" y="122" fill="#FCA5A5" font-family="'Cascadia Code', monospace" font-size="16">
+    [2] Live Host Validation
+  </text>
+  <text x="882" y="158" fill="#93C5FD" font-family="'Cascadia Code', monospace" font-size="16">
+    [3] Endpoint Discovery
+  </text>
+  <text x="882" y="194" fill="#FDE68A" font-family="'Cascadia Code', monospace" font-size="16">
+    [4] Automated Checks
+  </text>
+  <text x="882" y="242" fill="#D7E1F2" font-family="'Segoe UI', Arial, sans-serif" font-size="15">
+    GitHub: github.com/floryid/MaungAi
+  </text>
+</svg>

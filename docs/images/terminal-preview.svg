@@ -1,0 +1,66 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" rx="24" fill="#0A0F1A"/>
+  <rect x="34" y="30" width="1212" height="660" rx="20" fill="#0F1726" stroke="#22304A" stroke-width="2"/>
+  <circle cx="76" cy="66" r="8" fill="#FF5F57"/>
+  <circle cx="104" cy="66" r="8" fill="#FFBD2E"/>
+  <circle cx="132" cy="66" r="8" fill="#28C840"/>
+
+  <text x="68" y="118" fill="#FF5A5A" font-family="'Cascadia Code', monospace" font-size="26" font-weight="700">
+    ███╗   ███╗ █████╗ ██╗   ██╗███╗   ██╗ ██████╗      █████╗ ██╗
+  </text>
+  <text x="68" y="152" fill="#E14B4B" font-family="'Cascadia Code', monospace" font-size="26" font-weight="700">
+    ████╗ ████║██╔══██╗██║   ██║████╗  ██║██╔════╝     ██╔══██╗██║
+  </text>
+  <text x="68" y="186" fill="#FF6B6B" font-family="'Cascadia Code', monospace" font-size="26" font-weight="700">
+    ██╔████╔██║███████║██║   ██║██╔██╗ ██║██║  ███╗    ███████║██║
+  </text>
+  <text x="68" y="220" fill="#37D67A" font-family="'Cascadia Code', monospace" font-size="26" font-weight="700">
+    ██║╚██╔╝██║██╔══██║██║   ██║██║╚██╗██║██║   ██║    ██╔══██║██║
+  </text>
+  <text x="68" y="254" fill="#61F2A0" font-family="'Cascadia Code', monospace" font-size="26" font-weight="700">
+    ██║ ╚═╝ ██║██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝    ██║  ██║██║
+  </text>
+  <text x="68" y="288" fill="#39C772" font-family="'Cascadia Code', monospace" font-size="26" font-weight="700">
+    ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝     ╚═╝  ╚═╝╚═╝
+  </text>
+
+  <text x="240" y="338" fill="#D9E4F5" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="600">
+    Recon • Discovery • Automation • Research
+  </text>
+
+  <rect x="68" y="378" width="1142" height="248" rx="18" fill="#121C2D" stroke="#22304A" stroke-width="2"/>
+  <text x="92" y="420" fill="#A5B4CF" font-family="'Cascadia Code', monospace" font-size="18">
+    [ TARGET ]
+  </text>
+  <text x="92" y="456" fill="#D9E4F5" font-family="'Cascadia Code', monospace" font-size="18">
+    Domain : example.com
+  </text>
+  <text x="92" y="488" fill="#D9E4F5" font-family="'Cascadia Code', monospace" font-size="18">
+    Scope  : *.example.com
+  </text>
+  <text x="92" y="520" fill="#61F2A0" font-family="'Cascadia Code', monospace" font-size="18">
+    Status : Ready
+  </text>
+  <text x="92" y="566" fill="#FF7272" font-family="'Cascadia Code', monospace" font-size="18">
+    [1] Asset Discovery
+  </text>
+  <text x="92" y="598" fill="#61F2A0" font-family="'Cascadia Code', monospace" font-size="18">
+    [2] Live Host Validation
+  </text>
+  <text x="430" y="566" fill="#8ABFFF" font-family="'Cascadia Code', monospace" font-size="18">
+    [3] Endpoint Discovery
+  </text>
+  <text x="430" y="598" fill="#FFD166" font-family="'Cascadia Code', monospace" font-size="18">
+    [4] Automated Checks
+  </text>
+  <text x="790" y="566" fill="#D9E4F5" font-family="'Cascadia Code', monospace" font-size="18">
+    [8] Run Full Pipeline
+  </text>
+  <text x="790" y="598" fill="#D9E4F5" font-family="'Cascadia Code', monospace" font-size="18">
+    [9] Tool Status
+  </text>
+
+  <text x="68" y="667" fill="#7E8CA5" font-family="'Segoe UI', Arial, sans-serif" font-size="16">
+    Preview ilustrasi tampilan terminal MaungAi di GitHub README
+  </text>
+</svg>
