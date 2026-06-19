@@ -7,6 +7,26 @@ Repository GitHub:
 - Repository page: `https://github.com/floryid/MaungAi`
 - Git clone URL: `https://github.com/floryid/MaungAi.git`
 
+## Preview Banner
+
+Berikut contoh banner terminal `MaungAi` yang dipakai di aplikasi. Pada terminal Linux UTF-8, banner ini tampil dengan tema warna merah dan hijau.
+
+```text
+ ███╗   ███╗ █████╗ ██╗   ██╗███╗   ██╗ ██████╗      █████╗ ██╗
+ ████╗ ████║██╔══██╗██║   ██║████╗  ██║██╔════╝     ██╔══██╗██║
+ ██╔████╔██║███████║██║   ██║██╔██╗ ██║██║  ███╗    ███████║██║
+ ██║╚██╔╝██║██╔══██║██║   ██║██║╚██╗██║██║   ██║    ██╔══██║██║
+ ██║ ╚═╝ ██║██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝    ██║  ██║██║
+ ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝     ╚═╝  ╚═╝╚═╝
+
+         Recon • Discovery • Automation • Research
+```
+
+Catatan:
+
+- Di terminal Linux UTF-8, banner tampil penuh dengan warna ANSI merah-hijau.
+- Di terminal yang tidak mendukung Unicode dengan baik, `MaungAi` otomatis memakai fallback ASCII agar tetap terbaca.
+
 ## Ringkasan
 
 MaungAi mengikuti alur kerja bug hunter modern:
