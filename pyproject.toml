@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maungai"
+version = "0.2.0"
+description = "Recon pipeline terminal framework for authorized bug bounty and security assessment workflows."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary - authorized testing only" }
+authors = [
+  { name = "MaungAi" }
+]
+keywords = ["recon", "bugbounty", "security", "pipeline", "cli"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Environment :: Console",
+  "Operating System :: POSIX :: Linux",
+]
+
+[project.scripts]
+maungai = "maungai.app:main"
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["maungai*"]

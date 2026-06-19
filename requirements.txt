@@ -1,0 +1,2 @@
+# MaungAi saat ini menggunakan Python standard library.
+# Install tool eksternal Linux melalui scripts/install_linux_tools.sh
