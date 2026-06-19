@@ -1,133 +1,232 @@
 # MaungAi
 
-MaungAi adalah aplikasi terminal berbasis Python untuk workflow reconnaissance dan vulnerability assessment yang bertahap, cepat, dan terstruktur pada pengujian resmi, bug bounty, VDP, dan audit yang memiliki izin.
+MaungAi adalah aplikasi terminal berbasis Python untuk workflow reconnaissance dan vulnerability assessment yang bertahap, cepat, terstruktur, dan fokus pada target yang memang relevan. Tool ini dirancang untuk authorized testing seperti bug bounty, VDP, penetration test resmi, dan audit keamanan yang memiliki izin tertulis.
 
-Fokus utamanya adalah:
+Repository GitHub:
+
+- Repository page: `https://github.com/floryid/MaungAi`
+- Git clone URL: `https://github.com/floryid/MaungAi.git`
+
+## Ringkasan
+
+MaungAi mengikuti alur kerja bug hunter modern:
 
 1. Temukan aset
 2. Validasi host hidup
 3. Petakan endpoint
 4. Prioritaskan parameter rawan
 5. Jalankan automated checks
-6. Lanjutkan verifikasi manual
-7. Dokumentasikan hasil dengan rapi
+6. Lanjut verifikasi manual
+7. Dokumentasikan hasil
+
+Pendekatan ini lebih rapi dan efisien dibanding langsung menghajar semua target dengan satu command panjang.
 
 ## Kenapa MaungAi
 
-- Mudah dipakai dari terminal Linux.
+- Fokus pada workflow terminal Linux yang sederhana tetapi powerful.
 - Mengikuti alur modern: `recon -> validation -> discovery -> scanning`.
-- Lebih hemat request karena memproses host dan endpoint yang relevan.
-- Menyimpan output per target agar hasil tidak berantakan.
-- Tetap bisa jalan walau sebagian tool eksternal belum terpasang.
-- Menyediakan preset scan `fast`, `balanced`, dan `deep`.
+- Mengurangi noise dengan memproses host hidup dan endpoint relevan.
+- Menyimpan hasil scan per target agar mudah di-review.
+- Tetap bisa jalan meskipun sebagian tool eksternal belum terpasang.
+- Mendukung preset scan `fast`, `balanced`, dan `deep`.
+- Menyediakan report, execution plan, inventory, dan manual review queue.
 
 ## Fitur Utama
 
 - UI terminal interaktif dengan menu yang jelas.
+- Mode CLI non-interaktif untuk automasi atau scripting.
 - Preset scan:
   - `fast` untuk triage cepat
   - `balanced` untuk workflow harian
-  - `deep` untuk audit resmi lebih dalam
-- Struktur output profesional per target:
+  - `deep` untuk audit resmi yang lebih dalam
+- Integrasi tool modern:
+  - `subfinder` untuk subdomain discovery
+  - `httpx` untuk validasi live host dan fingerprinting
+  - `katana` untuk crawling endpoint
+  - `gau` dan `waybackurls` untuk historical URLs
+  - `gf` dan `uro` untuk parameter triage
+  - `nuclei -as` untuk automated checks
+- Output profesional per target:
   - `assets/`
   - `endpoints/`
   - `parameters/`
-  - `findings/info|low|medium|high/`
-  - `screenshots/`
+  - `findings/`
   - `raw/`
   - `logs/`
   - `reports/`
-- Integrasi tool modern:
-  - `subfinder` untuk subdomain discovery
-  - `httpx` untuk validasi live host dan tech fingerprinting
-  - `katana` untuk crawl endpoint
-  - `gau` dan `waybackurls` untuk historical URLs
-  - `gf` dan `uro` untuk parameter triage
-  - `nuclei -as` untuk automated checks modern
-- Fallback internal berbasis Python saat tool eksternal belum tersedia.
-- Config snapshot, execution plan, inventory, dan summary report.
-- Manual review queue untuk membantu validasi bug yang tidak terdeteksi otomatis.
+- Fallback internal Python jika tool tertentu belum tersedia.
 
 ## Filosofi Pipeline
 
-### 1. Asset Discovery
+### Asset Discovery
 
-- Cari subdomain dan inventaris DNS awal.
+- Cari subdomain awal dan inventaris dasar.
 
-### 2. Live Host Validation
+### Live Host Validation
 
-- Buang aset yang mati.
-- Simpan teknologi dan respons awal untuk prioritas triage.
+- Buang aset mati lebih awal.
+- Simpan informasi teknologi untuk triage berikutnya.
 
-### 3. Endpoint Discovery
+### Endpoint Discovery
 
 - Gabungkan crawling aktif dan historical URLs.
-- Pisahkan JavaScript, API, dan endpoint menarik.
+- Pisahkan endpoint API, JavaScript, dan endpoint penting.
 
-### 4. Parameter Analysis
+### Parameter Analysis
 
-- Fokus ke query yang punya nilai tinggi untuk XSS, SQLi, SSRF, redirect, dan sink input lain.
+- Prioritaskan parameter yang paling sering relevan untuk XSS, SQLi, SSRF, redirect, dan sink input lain.
 
-### 5. Automated Checks
+### Automated Checks
 
-- Jalankan `nuclei` hanya pada target yang lebih relevan.
+- Jalankan scan template modern hanya pada target yang lebih relevan.
 
-### 6. Manual Review
+### Manual Review
 
-- Validasi auth, authz, upload, business logic, dan area sensitif lain.
+- Fokus ke auth, authz, upload, business logic, akses API, dan validasi manual lain.
 
-### 7. Reporting
+### Reporting
 
-- Hasil dirangkum ke format markdown dan JSON.
+- Hasil akhir disusun dalam markdown dan JSON agar mudah dibaca atau diolah ulang.
 
-## Instalasi Linux
+## Kebutuhan Sistem
 
-### 1. Clone project
+Target utama penggunaan adalah Linux.
+
+### Minimum
+
+- Linux modern seperti Ubuntu, Debian, Kali, Parrot, Arch, atau distro sejenis
+- Python `>= 3.10`
+- Git
+- Go untuk install tool recon eksternal
+
+### Tool eksternal yang didukung
+
+- `subfinder`
+- `httpx`
+- `katana`
+- `gau`
+- `waybackurls`
+- `gf`
+- `uro`
+- `nuclei`
+
+## Instalasi Lengkap di Linux
+
+### 1. Clone repository
 
 ```bash
-git clone <repo-url> maungai
-cd maungai
+git clone https://github.com/floryid/MaungAi.git
+cd MaungAi
 ```
 
-### 2. Install Python package
+### 2. Buat virtual environment Python
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -U pip
+```
+
+### 3. Update `pip` dan install package
+
+```bash
+pip install --upgrade pip
 pip install -e .
 ```
 
-### 3. Install tool eksternal
+Setelah langkah ini selesai, Anda bisa menjalankan command:
+
+```bash
+maungai
+```
+
+### 4. Install tool eksternal secara otomatis
+
+Gunakan script installer bawaan:
 
 ```bash
 chmod +x scripts/install_linux_tools.sh
 ./scripts/install_linux_tools.sh
 ```
 
-Script installer ada di [install_linux_tools.sh](file:///d:/wamserver64/www/MaungAi/scripts/install_linux_tools.sh).
+Script ini akan membantu menginstall:
 
-## Menjalankan App
+- `subfinder`
+- `httpx`
+- `katana`
+- `gau`
+- `waybackurls`
+- `gf`
+- `uro`
+- `nuclei`
 
-### Mode interaktif
+Script installer:
+
+- Relative path: `scripts/install_linux_tools.sh`
+- GitHub URL: `https://github.com/floryid/MaungAi/blob/main/scripts/install_linux_tools.sh`
+
+### 5. Verifikasi instalasi tool
 
 ```bash
-python3 main.py
+subfinder -version
+httpx -version
+katana -version
+nuclei -version
 ```
 
-Atau jika sudah di-install:
+Jika semua normal, maka lingkungan Linux Anda sudah siap.
+
+## Menjalankan MaungAi
+
+Ada dua cara utama:
+
+### 1. Mode interaktif
+
+Jalankan:
 
 ```bash
 maungai
 ```
 
-### Jalankan seluruh pipeline
+Atau:
+
+```bash
+python3 main.py
+```
+
+Mode ini cocok jika Anda ingin memilih target, profile, dan step langsung dari menu terminal.
+
+### 2. Mode non-interaktif
+
+Mode ini cocok untuk automasi, VPS, screen/tmux, atau cron/manual scripting.
+
+Contoh:
 
 ```bash
 python3 main.py --target example.com --scope "*.example.com" --profile balanced --full-pipeline
 ```
 
-### Jalankan satu tahap
+## Cara Pakai Lengkap
+
+### A. Jalankan full pipeline
+
+```bash
+python3 main.py \
+  --target example.com \
+  --scope "*.example.com" \
+  --profile balanced \
+  --full-pipeline
+```
+
+Penjelasan:
+
+- `--target` adalah domain utama
+- `--scope` adalah scope yang Anda izinkan untuk diuji
+- `--profile balanced` cocok untuk workflow standar
+- `--full-pipeline` menjalankan semua tahap
+
+### B. Jalankan per tahap
+
+Jika ingin lebih terkontrol, jalankan satu per satu:
 
 ```bash
 python3 main.py --target example.com --step assets
@@ -139,33 +238,162 @@ python3 main.py --target example.com --step manual
 python3 main.py --target example.com --step report
 ```
 
-### Simpan config
+### C. Simpan konfigurasi
 
 ```bash
-python3 main.py --target example.com --scope "*.example.com" --profile fast --save-config
+python3 main.py \
+  --target example.com \
+  --scope "*.example.com" \
+  --profile fast \
+  --save-config
 ```
 
-### Load config lama
+Output config akan tersimpan seperti:
+
+```text
+project/example.com/reports/maungai-config.json
+```
+
+### D. Gunakan config yang sudah disimpan
 
 ```bash
 python3 main.py --config project/example.com/reports/maungai-config.json --full-pipeline
 ```
 
-## Opsi CLI Penting
+### E. Jalankan tanpa historical URLs
 
-- `--target` domain utama
-- `--scope` scope pengujian
+```bash
+python3 main.py \
+  --target example.com \
+  --scope "*.example.com" \
+  --profile fast \
+  --no-history \
+  --full-pipeline
+```
+
+Ini berguna jika Anda ingin scan lebih hemat request dan lebih fokus pada crawling aktif.
+
+## Penjelasan Profile
+
+### `fast`
+
+Cocok untuk:
+
+- triage cepat
+- cek awal scope besar
+- hemat request
+
+Contoh:
+
+```bash
+python3 main.py --target example.com --scope "*.example.com" --profile fast --full-pipeline
+```
+
+### `balanced`
+
+Cocok untuk:
+
+- workflow default harian
+- recon yang cukup lengkap
+- hasil lebih stabil
+
+Contoh:
+
+```bash
+python3 main.py --target example.com --scope "*.example.com" --profile balanced --full-pipeline
+```
+
+### `deep`
+
+Cocok untuk:
+
+- audit resmi
+- scope lebih sempit
+- eksplorasi lebih dalam
+
+Contoh:
+
+```bash
+python3 main.py --target app.example.com --scope "app.example.com" --profile deep --full-pipeline
+```
+
+## Contoh Penggunaan Lengkap
+
+### Contoh 1: Recon cepat untuk bug bounty
+
+```bash
+git clone https://github.com/floryid/MaungAi.git
+cd MaungAi
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -U pip
+pip install -e .
+chmod +x scripts/install_linux_tools.sh
+./scripts/install_linux_tools.sh
+
+python3 main.py \
+  --target example.com \
+  --scope "*.example.com" \
+  --profile fast \
+  --full-pipeline
+```
+
+Hasil utama yang akan Anda dapat:
+
+- `project/example.com/assets/live.txt`
+- `project/example.com/endpoints/urls.txt`
+- `project/example.com/parameters/gf_xss.txt`
+- `project/example.com/parameters/gf_sqli.txt`
+- `project/example.com/parameters/gf_ssrf.txt`
+- `project/example.com/reports/summary.md`
+
+### Contoh 2: Jalankan bertahap untuk validasi manual
+
+```bash
+python3 main.py --target example.com --step assets
+python3 main.py --target example.com --step live
+python3 main.py --target example.com --step endpoints
+python3 main.py --target example.com --step params
+python3 main.py --target example.com --step report
+```
+
+Lalu review:
+
+```bash
+cat project/example.com/reports/summary.md
+cat project/example.com/reports/manual-review.md
+```
+
+### Contoh 3: Workflow interaktif
+
+```bash
+maungai
+```
+
+Lalu di menu:
+
+1. Pilih `t` untuk set target
+2. Pilih `p` untuk set profile
+3. Pilih `8` untuk menjalankan full pipeline
+4. Pilih `7` untuk generate report
+5. Buka hasil di folder `project/<target>/reports/`
+
+## Opsi CLI
+
+- `--target` domain utama, contoh `example.com`
+- `--scope` scope target, contoh `"*.example.com"`
+- `--workspace-root` root folder output, default `project`
 - `--profile` preset scan: `fast`, `balanced`, `deep`
-- `--timeout` timeout per command
-- `--no-history` matikan `gau` dan `waybackurls`
+- `--timeout` timeout per command dalam detik
+- `--config` load config JSON yang pernah disimpan
+- `--save-config` simpan config lalu keluar
+- `--no-history` matikan pengambilan URL historical
 - `--step` jalankan satu tahap
 - `--full-pipeline` jalankan semua tahap
-- `--config` load config JSON yang tersimpan
-- `--save-config` simpan config snapshot lalu keluar
 
 ## Struktur Output
 
-Untuk target `example.com`, output default akan dibuat di:
+Untuk target `example.com`, struktur output default:
 
 ```text
 project/example.com/
@@ -204,17 +432,27 @@ project/example.com/
     └── summary.json
 ```
 
+## File Hasil yang Paling Sering Dipakai
+
+- `assets/live.txt` untuk daftar host hidup
+- `endpoints/urls.txt` untuk seluruh URL unik
+- `endpoints/interesting.txt` untuk endpoint prioritas
+- `parameters/priority.txt` untuk parameter yang lebih menarik
+- `findings/` untuk hasil severity otomatis
+- `reports/manual-review.md` untuk checklist verifikasi manual
+- `reports/summary.md` untuk ringkasan hasil
+
 ## Workflow Ideal
 
 1. Set `target` dan `scope`
 2. Pilih profile scan
-3. Jalankan `Asset Discovery`
-4. Lanjut `Live Host Validation`
-5. Kumpulkan endpoint
-6. Triage parameter
-7. Jalankan `Automated Checks`
-8. Review `manual-review.md`
-9. Buka `summary.md` dan `inventory.md`
+3. Jalankan `assets`
+4. Lanjut `live`
+5. Jalankan `endpoints`
+6. Review `params`
+7. Jalankan `scan`
+8. Gunakan `manual-review.md` untuk verifikasi
+9. Simpan dan review `summary.md`
 
 ## Testing
 
@@ -223,6 +461,45 @@ Jalankan test bawaan:
 ```bash
 python3 -m unittest discover -s tests -v
 ```
+
+## Troubleshooting
+
+### Command `maungai` tidak ditemukan
+
+Pastikan Anda sudah menjalankan:
+
+```bash
+pip install -e .
+```
+
+dan virtual environment sedang aktif:
+
+```bash
+source .venv/bin/activate
+```
+
+### Tool eksternal tidak ditemukan
+
+Jalankan:
+
+```bash
+./scripts/install_linux_tools.sh
+```
+
+atau install manual tool yang belum ada.
+
+### Hasil scan kosong
+
+Periksa:
+
+- target benar
+- scope benar
+- host memang hidup
+- tool seperti `httpx`, `katana`, `gau`, `nuclei` berhasil terpasang
+
+### Terminal tidak menampilkan banner Unicode dengan baik
+
+MaungAi sudah punya fallback ASCII, tetapi untuk hasil terbaik gunakan terminal Linux UTF-8.
 
 ## Catatan Keamanan
 
